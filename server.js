@@ -4,6 +4,9 @@ const compression = require('compression')
 const path = require('path')
 
 const mongoDB = require('./config/mongoose')
+const passport = require('./config/passport')
+
+const authRoutes = require('./routes/authRoutes')
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -17,9 +20,11 @@ app.use(compression())
 // Body Parser mw
 app.use(bodyParser.json())
 
-// TODO: passport config
+// Passport config
+passport.config(app)
 
-// TODO: Routes
+// TODO: Express Routes
+app.use('/api/auth', authRoutes)
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')))

@@ -41,3 +41,15 @@ User.create = (profile, callback) => {
     }
   })
 }
+
+User.findByUsername = (username, callback) => {
+  User.findOne({ username: profile.username }, (err, doc) => {
+    if (err) { callback(err, null) }
+
+    if (doc) {
+      callback(null, doc)
+    } else {
+      callback(new Error('User not found'), null)
+    }
+  })
+}

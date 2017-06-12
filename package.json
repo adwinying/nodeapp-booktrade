@@ -16,9 +16,11 @@
     "body-parser": "^1.17.2",
     "compression": "^1.6.2",
     "express": "^4.15.3",
+    "express-session": "^1.15.3",
     "mongoose": "^4.10.5",
     "passport": "^0.3.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "passport-session": "^1.0.2"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
