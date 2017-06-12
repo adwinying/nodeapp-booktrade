@@ -11,13 +11,14 @@
   "author": "Adwin Ying",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "compression": "^1.6.2",
     "express": "^4.15.3",
     "mongoose": "^4.10.5",
     "passport": "^0.3.2",
-    "passport-twitter": "^1.0.4"
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
