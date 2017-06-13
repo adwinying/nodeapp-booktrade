@@ -12,7 +12,7 @@
 #### `POST /api/auth/signup`
 Sign up a user and store in database.
 
-```javascipt
+```javascript
 // Expected input
 {
   "username": "testuser",
@@ -43,7 +43,7 @@ Sign up a user and store in database.
 #### `POST /api/auth/signin`
 Sign in a user and create a session.
 
-```javascipt
+```javascript
 // Expected input
 {
   "username": "testuser",
@@ -72,7 +72,7 @@ Sign in a user and create a session.
 #### `GET /api/auth/signout`
 Sign out a user and end the current session.
 
-```javascipt
+```javascript
 // Output (Success)
 {
   "success": true,
@@ -88,10 +88,10 @@ Sign out a user and end the current session.
 
 
 #### `GET /api/auth/profile`
-** Authentication required **
+_**Authentication required**_
 Returns the profile of current user session.
 
-```javascipt
+```javascript
 // Output (Success)
 {
   "success": true,
@@ -115,7 +115,7 @@ Returns the profile of current user session.
 ** Authentication required **
 Updates the profile of current user session.
 
-```javascipt
+```javascript
 // Expected input
 {
   "_id": "noaein235oubw9tj",
