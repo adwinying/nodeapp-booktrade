@@ -70,6 +70,7 @@ Sign in a user and create a session.
 
 
 #### `GET /api/auth/signout`
+_**Authentication required**_
 Sign out a user and end the current session.
 
 ```javascript
@@ -112,7 +113,7 @@ Returns the profile of current user session.
 
 
 #### `PUT /api/auth/profile`
-** Authentication required **
+_**Authentication required**_
 Updates the profile of current user session.
 
 ```javascript
