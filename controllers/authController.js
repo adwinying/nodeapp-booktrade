@@ -103,17 +103,35 @@ const updateProfile = (req, res) => {
             user.city = req.body.city
             user.state = req.body.state
 
-            user.save(() => {
-              res.json({
-                success: true,
-                user: {
-                  _id: user._id,
-                  username: user.username,
-                  city: user.city,
-                  state: user.state,
-                },
+            if (req.body.newPassword) {
+              bcrypt.hash(req.body.newPassword, 10)
+                .then((hash) => {
+                  user.password = hash
+                  user.save(() => {
+                    res.json({
+                      success: true,
+                      user: {
+                        _id: user._id,
+                        username: user.username,
+                        city: user.city,
+                        state: user.state,
+                      },
+                    })
+                  })
+                })
+            } else {
+              user.save(() => {
+                res.json({
+                  success: true,
+                  user: {
+                    _id: user._id,
+                    username: user.username,
+                    city: user.city,
+                    state: user.state,
+                  },
+                })
               })
-            })
+            }
           } else {
             res.json({
               success: false,
