@@ -8,7 +8,7 @@ authRouter.post('/signup', authController.signup)
 
 authRouter.post('/signin', authController.authenticate)
 
-authRouter.get('/signout', authController.signout)
+authRouter.get('/signout', loggedIn, authController.signout)
 
 authRouter.get('/profile', loggedIn, authController.getProfile)
 

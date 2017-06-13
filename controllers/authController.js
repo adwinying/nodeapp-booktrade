@@ -64,18 +64,11 @@ const authenticate = (req, res, next) => {
 }
 
 const signout = (req, res) => {
-  if (req.isAuthenticated()) {
-    req.logout()
-    res.json({
-      success: true,
-      message: 'Successfully logged out.',
-    })
-  } else {
-    res.json({
-      success: false,
-      message: 'Not signed in',
-    })
-  }
+  req.logout()
+  res.json({
+    success: true,
+    message: 'Successfully logged out.',
+  })
 }
 
 const getProfile = (req, res) => {
