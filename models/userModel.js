@@ -24,7 +24,6 @@ User.create = (profile, callback) => {
     if (err) { callback(err, null) }
 
     if (doc) {
-      console.log('Username already exists')
       callback(new Error('Username already exists!'), null)
     } else {
       bcrypt.hash(profile.password, saltRounds)
@@ -38,18 +37,19 @@ User.create = (profile, callback) => {
 
           newUser.save(callback)
         })
+        .catch((bcryptErr) => {
+          console.log(bcryptErr)
+        })
     }
   })
 }
 
 User.findByUsername = (username, callback) => {
-  User.findOne({ username: profile.username }, (err, doc) => {
+  User.findOne({ username }, (err, doc) => {
     if (err) { callback(err, null) }
 
-    if (doc) {
-      callback(null, doc)
-    } else {
-      callback(new Error('User not found'), null)
-    }
+    callback(null, doc)
   })
 }
+
+module.exports = User

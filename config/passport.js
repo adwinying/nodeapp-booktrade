@@ -24,21 +24,22 @@ const config = (app) => {
   })
 
   passport.use(new LocalStrategy((username, password, callback) => {
-    User.findByUsername((username, (err, user) => {
+    User.findByUsername(username, (err, user) => {
       if (err) {
-        console.log(err)
-        callback(null, false, { message: 'Username does not exist' })
+        throw err
+      } else if (!user) {
+        callback(null, false, 'Username does not exist')
       } else {
         bcrypt.compare(password, user.password)
           .then((res) => {
             if (res) {
               callback(null, user)
             } else {
-              callback(null, false, { message: 'Invalid password' })
+              callback(null, false, 'Invalid password')
             }
           })
       }
-    }))
+    })
   }))
 }
 
