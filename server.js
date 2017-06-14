@@ -7,6 +7,7 @@ const mongoDB = require('./config/mongoose')
 const passport = require('./config/passport')
 
 const authRoutes = require('./routes/authRoutes')
+const bookRoutes = require('./routes/bookRoutes')
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -23,8 +24,9 @@ app.use(bodyParser.json())
 // Passport config
 passport.config(app)
 
-// TODO: Express Routes
+// Express Routes
 app.use('/api/auth', authRoutes)
+app.use('/api/book', bookRoutes)
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')))

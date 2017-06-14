@@ -13,23 +13,38 @@ const bookModel = new Schema({
   },
   lender: Schema.Types.ObjectId,
   imageURL: String,
+  confirmed: {
+    type: Boolean,
+    default: false,
+  },
+}, {
+  timestamps: {
+    createdAt: 'updated',
+    updatedAt: 'updated',
+  },
 })
 
 const Book = mongoose.model('Book', bookModel)
 
-Book.create = (book, userId, callback) => {
-  const newBook = {
-    title: book.title,
+Book.create = (title, userId, callback) => {
+  const newBook = new Book({
+    title,
     owner: userId,
-  }
+  })
 
   newBook.save(callback)
 }
 
 Book.update = (book, callback) => {
-  Book.findOneAndUpdate({ _id: book._id }, book, callback)
+  Book.findOneAndUpdate({ _id: book._id }, book, { new: true }, callback)
 }
 
 Book.delete = (bookId, callback) => {
   Book.deleteOne({ _id: bookId }, callback)
 }
+
+Book.fetchAll = (callback) => {
+  Book.find({}, callback)
+}
+
+module.exports = Book
