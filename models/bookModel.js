@@ -26,10 +26,11 @@ const bookModel = new Schema({
 
 const Book = mongoose.model('Book', bookModel)
 
-Book.create = (title, userId, callback) => {
+Book.create = (title, userId, imageURL, callback) => {
   const newBook = new Book({
     title,
     owner: userId,
+    imageURL,
   })
 
   newBook.save(callback)
@@ -44,7 +45,7 @@ Book.delete = (bookId, callback) => {
 }
 
 Book.fetchAll = (callback) => {
-  Book.find({}, callback)
+  Book.find({}).sort('-updated').exec(callback)
 }
 
 module.exports = Book
