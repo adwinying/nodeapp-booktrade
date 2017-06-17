@@ -5,7 +5,12 @@
 - Node.js
 - MongoDB + Mongoose
 - Passport.js (Local strategy)
+- Google Books API
 - ESLint (Airbnb)
+- Vue.js
+- Vuex
+- Vue-router
+- SASS
 
 ## Backend APIs
 

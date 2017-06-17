@@ -41,11 +41,20 @@
 
     <div class="recentbooks">
       <h2 class="text-center">Recently Added Books</h2>
+      <div class="row recent-books-wrapper">
+        <div class="col-xs-6 col-sm-2" v-for="book in recentBooks">
+          <div class="book-cover" v-bind:style="{backgroundImage: 'url(' + book.imageURL + ')'}">
+            
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'home',
   data() {
@@ -56,6 +65,7 @@ export default {
   created() {
     this.getBooks()
   },
+  computed: mapGetters(['recentBooks']),
   methods: {
     getBooks() {
       this.$store.dispatch('fetchBooks')
@@ -68,4 +78,8 @@ export default {
 <style lang="sass" scoped>
 .features
   padding: 40px 0
+
+.recent-books-wrapper
+  margin-top: 30px
+  margin-bottom: 30px
 </style>
