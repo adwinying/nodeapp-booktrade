@@ -10,9 +10,6 @@ Vue.config.productionTip = false;
 
 Vue.use(VueResource);
 
-Vue.http.options.root = process.env.NODE_ENV === 'prodcution' ?
-  '/' : 'http://localhost:3000';
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
