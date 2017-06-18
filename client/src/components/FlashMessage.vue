@@ -5,7 +5,10 @@
       v-bind:class="`active alert alert-${flashMessage.type}`"
     >
       <p>
-        <i v-if="flashMessage.message === 'Loading...'" class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+        <i
+          v-if="flashMessage.message === 'Loading...'"
+          class="fa fa-circle-o-notch fa-spin fa-fw"
+        ></i>
         {{flashMessage.message}}
       </p>
     </div>

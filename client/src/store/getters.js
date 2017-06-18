@@ -6,4 +6,12 @@ export default {
   flashMessage(state) {
     return { ...state.flash }
   },
+
+  isSignedIn(state) {
+    return state.auth.isSignedIn
+  },
+
+  profile(state) {
+    return state.auth.user
+  },
 }

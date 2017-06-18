@@ -16,8 +16,18 @@
           <li><a href="#">All Books</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><router-link to="/signup">Sign Up</router-link></li>
-          <li><router-link to="/login">Log In</router-link></li>
+          <li v-if="isSignedIn">
+            <router-link to="/dashboard">Dashboard</router-link>
+          </li>
+          <li v-if="isSignedIn">
+            <router-link to="/signout">Sign Out</router-link>
+          </li>
+          <li v-if="!isSignedIn">
+            <router-link to="/signup">Sign Up</router-link>
+          </li>
+          <li v-if="!isSignedIn">
+            <router-link to="/login">Log In</router-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -25,13 +35,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Navbar',
-  data() {
-    return {
-
-    }
-  },
+  computed: mapGetters(['isSignedIn']),
 }
 </script>
 

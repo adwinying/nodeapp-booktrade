@@ -95,6 +95,36 @@ export default {
       })
   },
 
+  updateProfile: ({ commit }, userInfo) => {
+    this.a.flashMsg({ commit }, {
+      message: 'Updating...',
+      type: 'info',
+      duration: 0,
+    })
+
+    Vue.http.put('/api/auth/profile', userInfo)
+      .then(({ data }) => {
+        if (data.success) {
+          commit('updateUser', data.user)
+          this.a.flashMsg({ commit }, {
+            message: 'Successfully updated profile.',
+            type: 'success',
+            duration: 3000,
+          })
+        } else {
+          this.a.flashMsg({ commit }, {
+            message: data.message,
+            type: 'danger',
+            duration: 0,
+          })
+        }
+      })
+      .catch((err) => {
+        console.error(err)
+        this.a.flashErr({ commit })
+      })
+  },
+
   flashErr: ({ commit }) => {
     this.a.flashMsg({ commit }, {
       message: 'Error has occured, please try again later',

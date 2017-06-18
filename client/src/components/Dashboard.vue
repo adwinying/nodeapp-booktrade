@@ -1,19 +1,175 @@
 <template>
   <div class="container">
-    THIS IS DASHBOARD
+    <h1>Dashboard</h1>
+    <br>
+    <ul class="nav nav-tabs">
+      <li v-bind:class="activeTab === 'myBooks' ? 'active' : ''">
+        <a
+          class="nav-tab"
+          href="#"
+          v-on:click.prevent="handleTab"
+        >My Books</a>
+      </li>
+      <li v-bind:class="activeTab === 'requests' ? 'active' : ''">
+        <a
+          class="nav-tab"
+          href="#"
+          v-on:click.prevent="handleTab"
+        >Pending Requests</a>
+      </li>
+      <li v-bind:class="activeTab === 'profile' ? 'active' : ''">
+        <a
+          class="nav-tab"
+          href="#"
+          v-on:click.prevent="handleTab"
+        >Profile</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div
+        class="tab-pane fade in"
+        v-bind:class="activeTab === 'myBooks' ? 'active' : ''"
+      >
+        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+      </div>
+      <div
+        class="tab-pane fade in"
+        v-bind:class="activeTab === 'requests' ? 'active' : ''"
+      >
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+      </div>
+      <div
+        class="tab-pane fade in"
+        v-bind:class="activeTab === 'profile' ? 'active' : ''"
+      >
+        <h3>Update your profile</h3>
+        <p><i><span class="form-required">*</span> Required fields</i></p>
+        <div class="row">
+          <div class="col-sm-5">
+            <form v-on:submit.prevent="handleForm">
+              <div class="form-group">
+                <label for="username" class="control-label">
+                  Name
+                  <span class="form-required">*</span>
+                </label>
+                <input class="form-control" type="text" v-model="profile.name">
+              </div>
+              <div class="form-group">
+                <label for="username" class="control-label">
+                  City
+                  <span class="form-required">*</span>
+                </label>
+                <input class="form-control" type="text" v-model="profile.city">
+              </div>
+              <div class="form-group">
+                <label for="username" class="control-label">
+                  State
+                  <span class="form-required">*</span>
+                </label>
+                <input class="form-control" type="text" v-model="profile.state">
+              </div>
+              <div class="form-group">
+                <label for="username" class="control-label">
+                  Current Password
+                  <span class="form-required">*</span>
+                </label>
+                <input class="form-control" type="password" v-model="password">
+              </div>
+              <div class="form-group">
+                <label for="username" class="control-label">
+                  New Password
+                </label>
+                <input class="form-control" type="password" v-model="newPassword">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update profile</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Dashboard',
   data() {
     return {
-
+      activeTab: 'myBooks',
+      password: '',
+      newPassword: '',
     }
+  },
+  watch: {
+    profile() {
+      this.password = ''
+      this.newPassword = ''
+    },
+  },
+  computed: mapGetters(['profile']),
+  methods: {
+    handleTab(e) {
+      const tab = e.target.text
+      switch (tab) {
+        case 'My Books':
+          this.activeTab = 'myBooks'
+          break
+
+        case 'Pending Requests':
+          this.activeTab = 'requests'
+          break
+
+        case 'Profile':
+          this.activeTab = 'profile'
+          break
+
+        default:
+          this.activeTab = 'myBooks'
+      }
+    },
+
+    handleForm() {
+      if (
+        this.profile.name !== '' &&
+        this.profile.city !== '' &&
+        this.profile.state !== '' &&
+        this.password !== ''
+      ) {
+        this.$store.dispatch('updateProfile', {
+          _id: this.profile._id,
+          username: this.profile.username,
+          password: this.password,
+          newPassword: this.newPassword || undefined,
+          name: this.profile.name,
+          city: this.profile.city,
+          state: this.profile.state,
+        })
+      } else if (this.password === '') {
+        this.$store.dispatch('flashMsg', {
+          message: 'Please enter your password',
+          type: 'warning',
+          duration: 3000,
+        })
+      } else {
+        this.$store.dispatch('flashMsg', {
+          message: 'Please ensure all required fields are not empty',
+          type: 'warning',
+          duration: 3000,
+        })
+      }
+    },
   },
 }
 </script>
 
 <style lang="sass" scoped>
+.tab-content
+  padding-bottom: 60px
+
+.form-required
+  color: red
 </style>

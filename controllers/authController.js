@@ -117,6 +117,7 @@ const updateProfile = (req, res) => {
                       success: true,
                       user: {
                         _id: user._id,
+                        name: user.name,
                         username: user.username,
                         city: user.city,
                         state: user.state,
@@ -130,6 +131,7 @@ const updateProfile = (req, res) => {
                   success: true,
                   user: {
                     _id: user._id,
+                    name: user.name,
                     username: user.username,
                     city: user.city,
                     state: user.state,
