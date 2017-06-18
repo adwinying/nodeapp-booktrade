@@ -2,7 +2,9 @@
   <div id="app">
     <navbar></navbar>
     <flash-message></flash-message>
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
     <app-footer></app-footer>
   </div>
 </template>
@@ -35,4 +37,11 @@ export default {
   background-repeat: no-repeat
   background-size: cover
   margin: 15px 0
+
+.fade-enter-active, .fade-leave-active 
+  transition: opacity .25s
+
+.fade-enter, .fade-leave
+  opacity: 0
+
 </style>
