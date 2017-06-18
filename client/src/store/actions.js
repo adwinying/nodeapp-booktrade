@@ -26,8 +26,21 @@ export default {
       })
   },
 
-  signUp: ({ commit }, newUser) => {
-    console.log(this)
+  checkAuth({ commit }) {
+    Vue.http.get('/api/auth/profile')
+      .then(({ data }) => {
+        if (data.success) {
+          commit('updateUser', data.user)
+        } else {
+          commit('logoutUser')
+        }
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  },
+
+  signup: ({ commit }, newUser) => {
     this.a.flashMsg({ commit }, {
       message: 'Loading...',
       type: 'info',
@@ -45,35 +58,49 @@ export default {
           router.push('login')
         } else {
           console.error(data.message)
-          this.a.flashMsg({ commit }, {
-            message: 'Error has occured, please try again later',
-            type: 'danger',
-            duration: 0,
-          })
+          this.a.flashErr({ commit })
         }
       })
       .catch((err) => {
         console.error(err)
-        this.a.flashMsg({ commit }, {
-          message: 'Error has occured, please try again later',
-          type: 'danger',
-          duration: 0,
-        })
+        this.a.flashErr({ commit })
       })
   },
 
-  logIn() {
-    Vue.http.post('/api/auth/signin', {
-      username: 'adwin',
-      password: 'secret',
+  login: ({ commit }, userInfo) => {
+    this.a.flashMsg({ commit }, {
+      message: 'Loading...',
+      type: 'info',
+      duration: 0,
     })
-      .then((res) => {
-        console.log(res.data)
-        Vue.http.get('/api/auth/profile')
-          .then((profRes) => {
-            console.log(profRes.data)
+
+    Vue.http.post('/api/auth/signin', userInfo)
+      .then(({ data }) => {
+        if (data.success) {
+          commit('updateUser', data.user)
+          this.a.flashMsg({ commit }, {
+            message: 'Successfully logged in',
+            type: 'success',
+            duration: 3000,
           })
+          router.push('/dashboard')
+        } else {
+          console.error(data.message)
+          this.a.flashErr({ commit })
+        }
       })
+      .catch((err) => {
+        console.error(err)
+        this.a.flashErr({ commit })
+      })
+  },
+
+  flashErr: ({ commit }) => {
+    this.a.flashMsg({ commit }, {
+      message: 'Error has occured, please try again later',
+      type: 'danger',
+      duration: 0,
+    })
   },
 
 }

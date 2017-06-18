@@ -31,6 +31,25 @@ export default {
       password: '',
     }
   },
+  methods: {
+    handleSubmit() {
+      if (
+        this.username !== '' &&
+        this.password !== ''
+      ) {
+        this.$store.dispatch('login', {
+          username: this.username,
+          password: this.password,
+        })
+      } else {
+        this.$store.dispatch('flashMsg', {
+          message: 'Please ensure all fields are not empty',
+          type: 'warning',
+          duration: 3000,
+        })
+      }
+    },
+  },
 }
 </script>
 

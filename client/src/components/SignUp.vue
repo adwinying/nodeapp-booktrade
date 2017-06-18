@@ -56,7 +56,7 @@ export default {
         this.city !== '' &&
         this.state !== ''
       ) {
-        this.$store.dispatch('signUp', {
+        this.$store.dispatch('signup', {
           name: this.name,
           username: this.username,
           password: this.password,

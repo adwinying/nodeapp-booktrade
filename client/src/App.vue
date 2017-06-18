@@ -19,6 +19,9 @@ export default {
     appFooter: Footer,
     FlashMessage,
   },
+  created() {
+    this.$store.dispatch('checkAuth')
+  },
 };
 </script>
 

@@ -12,4 +12,14 @@ export default {
   hideMsg(state) {
     state.flash.show = false
   },
+
+  updateUser(state, user) {
+    state.auth.isSignedIn = true
+    state.auth.user = user
+  },
+
+  logoutUser(state) {
+    state.auth.isSignedIn = false
+    state.auth.user = undefined
+  },
 }
