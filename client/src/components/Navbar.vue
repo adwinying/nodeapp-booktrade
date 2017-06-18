@@ -20,7 +20,7 @@
             <router-link to="/dashboard">Dashboard</router-link>
           </li>
           <li v-if="isSignedIn">
-            <router-link to="/signout">Sign Out</router-link>
+            <a href="#" v-on:click.prevent="handleSignout">Log Out</a>
           </li>
           <li v-if="!isSignedIn">
             <router-link to="/signup">Sign Up</router-link>
@@ -40,6 +40,11 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
   computed: mapGetters(['isSignedIn']),
+  methods: {
+    handleSignout() {
+      return this.$store.dispatch('logout')
+    },
+  },
 }
 </script>
 

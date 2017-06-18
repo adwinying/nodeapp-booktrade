@@ -6,6 +6,8 @@ import SignUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
 import Dashboard from '../components/Dashboard';
 
+import guard from './guard';
+
 Vue.use(Router);
 
 export default new Router({
@@ -18,18 +20,21 @@ export default new Router({
     },
     {
       path: '/signup',
-      name: 'singup',
+      name: 'signup',
       component: SignUp,
+      beforeEnter: guard.requireGuest,
     },
     {
       path: '/login',
       name: 'login',
       component: SignIn,
+      beforeEnter: guard.requireGuest,
     },
     {
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
+      beforeEnter: guard.requireUser,
     },
   ],
 });

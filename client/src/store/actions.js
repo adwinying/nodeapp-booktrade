@@ -85,6 +85,31 @@ export default {
           })
           router.push('/dashboard')
         } else {
+          this.a.flashMsg({ commit }, {
+            message: data.message,
+            type: 'danger',
+            duration: 0,
+          })
+        }
+      })
+      .catch((err) => {
+        console.error(err)
+        this.a.flashErr({ commit })
+      })
+  },
+
+  logout: ({ commit }) => {
+    Vue.http.get('/api/auth/signout')
+      .then(({ data }) => {
+        if (data.success) {
+          this.a.flashMsg({ commit }, {
+            message: 'Successfully signed out.',
+            type: 'success',
+            duration: 3000,
+          })
+          commit('logoutUser')
+          router.push('/')
+        } else {
           console.error(data.message)
           this.a.flashErr({ commit })
         }

@@ -22,7 +22,7 @@
           class="nav-tab"
           href="#"
           v-on:click.prevent="handleTab"
-        >Profile</a>
+        >Update Profile</a>
       </li>
     </ul>
     <div class="tab-content">
@@ -42,9 +42,8 @@
         class="tab-pane fade in"
         v-bind:class="activeTab === 'profile' ? 'active' : ''"
       >
-        <h3>Update your profile</h3>
         <p><i><span class="form-required">*</span> Required fields</i></p>
-        <div class="row">
+        <div class="row" v-if="profile">
           <div class="col-sm-5">
             <form v-on:submit.prevent="handleForm">
               <div class="form-group">
@@ -94,6 +93,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import guard from '../router/guard'
 
 export default {
   name: 'Dashboard',
@@ -110,6 +110,7 @@ export default {
       this.newPassword = ''
     },
   },
+  beforeRouteEnter: guard.requireUser,
   computed: mapGetters(['profile']),
   methods: {
     handleTab(e) {
@@ -123,7 +124,7 @@ export default {
           this.activeTab = 'requests'
           break
 
-        case 'Profile':
+        case 'Update Profile':
           this.activeTab = 'profile'
           break
 
@@ -169,6 +170,9 @@ export default {
 <style lang="sass" scoped>
 .tab-content
   padding-bottom: 60px
+
+.tab-pane
+  padding: 30px 0
 
 .form-required
   color: red
