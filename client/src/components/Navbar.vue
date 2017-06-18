@@ -8,15 +8,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">BookTrade</a>
+        <router-link class="navbar-brand" to="/">BookTrade</router-link>
       </div>
 
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">All Books</a></li>
+          <li><a href="#">All Books</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Sign Up</a></li>
+          <li><router-link to="/signup">Sign Up</router-link></li>
           <li><a href="#">Log In</a></li>
         </ul>
       </div>
@@ -36,4 +36,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+a.router-link-exact-active
+  color: #ffffff !important
+  background-color: #393a35
 </style>

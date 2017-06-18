@@ -30,4 +30,8 @@ footer
   background-color: #444
   padding: 15px 0 0
   color: #e4e4e4
+  
+.router-link-active
+  color: #ffffff
+  background-color: #393a35
 </style>

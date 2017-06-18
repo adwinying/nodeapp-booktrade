@@ -5,6 +5,10 @@ const Schema = mongoose.Schema
 const saltRounds = 10
 
 const userModel = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   username: {
     type: String,
     required: true,
@@ -29,6 +33,7 @@ User.create = (profile, callback) => {
       bcrypt.hash(profile.password, saltRounds)
         .then((hash) => {
           const newUser = new User({
+            name: profile.name,
             username: profile.username,
             password: hash,
             city: profile.city,

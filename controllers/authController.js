@@ -3,12 +3,14 @@ const bcrypt = require('bcrypt')
 const User = require('../models/userModel')
 
 const signup = (req, res) => {
+  const name = req.body.name
   const username = req.body.username
   const password = req.body.password
   const city = req.body.city
   const state = req.body.state
 
   const newUser = {
+    name,
     username,
     password,
     city,
@@ -54,6 +56,7 @@ const authenticate = (req, res, next) => {
         success: true,
         user: {
           _id: user._id,
+          name: user.name,
           username: user.username,
           city: user.city,
           state: user.state,
@@ -76,6 +79,7 @@ const getProfile = (req, res) => {
     success: true,
     user: {
       _id: req.user._id,
+      name: req.user.name,
       username: req.user.username,
       city: req.user.city,
       state: req.user.state,
@@ -100,6 +104,7 @@ const updateProfile = (req, res) => {
         .then((match) => {
           if (match) {
             /* eslint-disable no-param-reassign */
+            user.name = req.body.name
             user.city = req.body.city
             user.state = req.body.state
 

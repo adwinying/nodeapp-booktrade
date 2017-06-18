@@ -43,8 +43,12 @@
       <h2 class="text-center">Recently Added Books</h2>
       <div class="row recent-books-wrapper">
         <div class="col-xs-6 col-sm-2" v-for="book in recentBooks">
-          <div class="book-cover" v-bind:style="{backgroundImage: 'url(' + book.imageURL + ')'}">
-            
+          <div class="book-cover"
+            v-bind:style="{
+              backgroundImage: 
+                'url(' + (book.imageURL || '/static/missing.jpg') + ')'
+            }"
+          >
           </div>
         </div>
       </div>

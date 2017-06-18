@@ -20,6 +20,7 @@ Sign up a user and store in database.
 ```javascript
 // Expected input
 {
+  "name": "John Doe",
   "username": "testuser",
   "password": "secret",
   "city": "myCity",
@@ -31,6 +32,7 @@ Sign up a user and store in database.
   "success": true,
   "user": {
     "_id": "noaein235oubw9tj",
+    "name": "John Doe"
     "username": "testuser",
     "city": "myCity",
     "state": "myState"
