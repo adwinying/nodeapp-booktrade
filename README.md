@@ -201,18 +201,15 @@ Creates new book entry in the database.
 // Output (Success)
 {
   "success": true,
-  "books": [
-    {
-      "_id": "594161166f1cb8952835ce0d",
-      "updated": "2017-06-14T16:15:18.539Z",
-      "title": "My Book Title",
-      "owner": "593fe659748a28813aa8bac0",
-      "imageURL": "http://books.google.com/books/content?id=eSMdAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "__v": 0,
-      "confirmed": false
-    },
-    ...
-  ]
+  "books": {
+    "_id": "594161166f1cb8952835ce0d",
+    "updated": "2017-06-14T16:15:18.539Z",
+    "title": "My Book Title",
+    "owner": "593fe659748a28813aa8bac0",
+    "imageURL": "http://books.google.com/books/content?id=eSMdAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "__v": 0,
+    "confirmed": false
+  }
 }
 
 // Output (Fail)
@@ -238,18 +235,15 @@ Modifies new book entry in the database.
 // Output (Success)
 {
   "success": true,
-  "books": [
-    {
-      "_id": "594161166f1cb8952835ce0d",
-      "updated": "2017-06-15T16:15:18.539Z",
-      "title": "My Book Title",
-      "owner": "593fe659748a28813aa8bac0",
-      "imageURL": "http://books.google.com/books/content?id=eSMdAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "__v": 0,
-      "confirmed": true
-    },
-    ...
-  ]
+  "book": {
+    "_id": "594161166f1cb8952835ce0d",
+    "updated": "2017-06-15T16:15:18.539Z",
+    "title": "My Book Title",
+    "owner": "593fe659748a28813aa8bac0",
+    "imageURL": "http://books.google.com/books/content?id=eSMdAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "__v": 0,
+    "confirmed": true
+  }
 }
 
 // Output (Fail)
