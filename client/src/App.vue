@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <navbar></navbar>
+    <flash-message></flash-message>
     <router-view></router-view>
     <app-footer></app-footer>
   </div>
@@ -9,12 +10,14 @@
 <script>
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import FlashMessage from './components/FlashMessage'
 
 export default {
   name: 'app',
   components: {
     Navbar,
     appFooter: Footer,
+    FlashMessage,
   },
 };
 </script>

@@ -9,8 +9,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isSignedIn: false,
-    user: undefined,
+    auth: {
+      isSignedIn: false,
+      user: undefined,
+    },
+    flash: {
+      show: false,
+      message: 'Loading...',
+      type: 'success',
+    },
     books: [],
   },
   mutations,

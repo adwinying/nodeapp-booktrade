@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1>Sign Up</h1>
+    <h4>All fields are required.</h4>
     <br>
     <div class="row">
       <div class="col-sm-5">
@@ -48,13 +49,27 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$store.dispatch('signUp', {
-        name: this.name,
-        username: this.username,
-        password: this.password,
-        city: this.city,
-        state: this.state,
-      })
+      if (
+        this.name !== '' &&
+        this.username !== '' &&
+        this.password !== '' &&
+        this.city !== '' &&
+        this.state !== ''
+      ) {
+        this.$store.dispatch('signUp', {
+          name: this.name,
+          username: this.username,
+          password: this.password,
+          city: this.city,
+          state: this.state,
+        })
+      } else {
+        this.$store.dispatch('flashMsg', {
+          message: 'Please ensure all fields are not empty',
+          type: 'warning',
+          duration: 3000,
+        })
+      }
     },
   },
 };

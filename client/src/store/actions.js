@@ -2,6 +2,16 @@ import Vue from 'vue'
 import router from '../router'
 
 export default {
+  flashMsg({ commit }, { message, type, duration }) {
+    commit('showMsg', { message, type })
+
+    if (duration) {
+      setTimeout(() => {
+        commit('hideMsg')
+      }, duration)
+    }
+  },
+
   fetchBooks({ commit }) {
     Vue.http.get('/api/book/all')
       .then((res) => {
@@ -16,18 +26,39 @@ export default {
       })
   },
 
-  signUp({ commit }, newUser) {
+  signUp: ({ commit }, newUser) => {
+    console.log(this)
+    this.a.flashMsg({ commit }, {
+      message: 'Loading...',
+      type: 'info',
+      duration: 0,
+    })
+
     Vue.http.post('/api/auth/signup', newUser)
       .then(({ data }) => {
         if (data.success) {
-          console.log(data.user)
+          this.a.flashMsg({ commit }, {
+            message: 'Successfully signed up. You may now login',
+            type: 'success',
+            duration: 0,
+          })
           router.push('login')
         } else {
           console.error(data.message)
+          this.a.flashMsg({ commit }, {
+            message: 'Error has occured, please try again later',
+            type: 'danger',
+            duration: 0,
+          })
         }
       })
       .catch((err) => {
         console.error(err)
+        this.a.flashMsg({ commit }, {
+          message: 'Error has occured, please try again later',
+          type: 'danger',
+          duration: 0,
+        })
       })
   },
 
@@ -44,4 +75,5 @@ export default {
           })
       })
   },
+
 }
