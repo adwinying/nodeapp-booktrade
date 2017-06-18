@@ -10,7 +10,14 @@
           v-on:click.prevent="handleTab"
         >My Books</a>
       </li>
-      <li v-bind:class="activeTab === 'requests' ? 'active' : ''">
+      <li v-bind:class="activeTab === 'myReq' ? 'active' : ''">
+        <a
+          class="nav-tab"
+          href="#"
+          v-on:click.prevent="handleTab"
+        >Requested Books</a>
+      </li>
+      <li v-bind:class="activeTab === 'pendingReq' ? 'active' : ''">
         <a
           class="nav-tab"
           href="#"
@@ -34,9 +41,15 @@
       </div>
       <div
         class="tab-pane fade in"
-        v-bind:class="activeTab === 'requests' ? 'active' : ''"
+        v-bind:class="activeTab === 'myReq' ? 'active' : ''"
       >
         <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+      </div>
+      <div
+        class="tab-pane fade in"
+        v-bind:class="activeTab === 'pendingReq' ? 'active' : ''"
+      >
+        <p>asdasdFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
       </div>
       <div
         class="tab-pane fade in"
@@ -120,8 +133,12 @@ export default {
           this.activeTab = 'myBooks'
           break
 
+        case 'Requested Books':
+          this.activeTab = 'myReq'
+          break
+
         case 'Pending Requests':
-          this.activeTab = 'requests'
+          this.activeTab = 'pendingReq'
           break
 
         case 'Update Profile':

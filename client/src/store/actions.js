@@ -57,8 +57,11 @@ export default {
           })
           router.push('login')
         } else {
-          console.error(data.message)
-          this.a.flashErr({ commit })
+          this.a.flashMsg({ commit }, {
+            message: data.message,
+            type: 'danger',
+            duration: 0,
+          })
         }
       })
       .catch((err) => {
