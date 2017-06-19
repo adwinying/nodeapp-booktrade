@@ -45,7 +45,7 @@ export default {
             store.dispatch('flashMsg', {
               message: 'You must be logged in to access this page.',
               type: 'danger',
-              duration: 0,
+              duration: 3000,
             })
           }
         })

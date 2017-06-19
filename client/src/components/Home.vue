@@ -6,7 +6,7 @@
         Knowledge is Power. Sharing is Caring.<br>
         Why not combine both?
       </p>
-      <a href="#" class="btn btn-primary">View All Books</a>
+      <router-link to="/all" class="btn btn-primary">All Books</router-link>
     </div>
 
     <div class="row features">
