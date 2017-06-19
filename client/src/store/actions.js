@@ -71,7 +71,7 @@ const addBook = ({ commit }, newBook) => {
 const deleteBook = ({ commit }, bookId) => {
   flashLoading({ commit })
 
-  Vue.http.delete('/api/book/delete', { _id: bookId })
+  Vue.http.delete('/api/book/delete', { body: { _id: bookId } })
     .then(({ data }) => {
       if (data.success) {
         commit('deleteBook', bookId)
