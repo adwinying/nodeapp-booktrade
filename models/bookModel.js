@@ -49,7 +49,7 @@ Book.delete = (bookId, callback) => {
 }
 
 Book.fetchAll = (callback) => {
-  Book.find({}).populate('owner').sort('-updated').exec(callback)
+  Book.find({}).populate({ path: 'owner', select: '-password' }).sort('-updated').exec(callback)
 }
 
 module.exports = Book

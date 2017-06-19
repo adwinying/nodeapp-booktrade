@@ -27,9 +27,16 @@ const createBook = (req, res) => {
       Book.create(req.body.title, req.user._id, imgURL, (err, book) => {
         if (err) return sendErr(err, res)
 
-        res.json({
-          success: true,
-          book,
+        book.populate({
+          path: 'owner',
+          select: '-password',
+        }, (popErr, pop) => {
+          if (popErr) return sendErr(popErr, res)
+
+          res.json({
+            success: true,
+            book: pop,
+          })
         })
       })
     })
@@ -54,10 +61,24 @@ const updateBook = (req, res) => {
   Book.update(targetBook, (err, book) => {
     if (err) return sendErr(err, res)
 
-    res.json({
-      success: true,
-      book,
-    })
+    if (book) {
+      book.populate({
+        path: 'owner',
+        select: '-password',
+      }, (popErr, pop) => {
+        if (popErr) return sendErr(popErr, res)
+
+        res.json({
+          success: true,
+          book: pop,
+        })
+      })
+    } else {
+      res.json({
+        success: false,
+        message: 'Book does not exist!',
+      })
+    }
   })
 }
 
