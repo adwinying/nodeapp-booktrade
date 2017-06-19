@@ -23,6 +23,7 @@ export default {
   },
   created() {
     this.$store.dispatch('checkAuth')
+    this.$store.dispatch('fetchBooks')
   },
 };
 </script>

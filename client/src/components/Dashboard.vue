@@ -43,16 +43,16 @@
         class="tab-pane fade in"
         v-bind:class="activeTab === 'myReq' ? 'active' : ''"
       >
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+        <book-list v-bind:books="requestedBooks"></book-list>
       </div>
       <div
         class="tab-pane fade in"
         v-bind:class="activeTab === 'pendingReq' ? 'active' : ''"
       >
-        <p>asdasdFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+        <book-list v-bind:books="pendingBooks"></book-list>
       </div>
       <div
-        class="tab-pane fade in"
+        class="tab-pane fade in profile"
         v-bind:class="activeTab === 'profile' ? 'active' : ''"
       >
         <p><i><span class="form-required">*</span> Required fields</i></p>
@@ -129,7 +129,12 @@ export default {
     },
   },
   beforeRouteEnter: guard.requireUser,
-  computed: mapGetters(['profile', 'userBooks']),
+  computed: mapGetters([
+    'profile',
+    'userBooks',
+    'requestedBooks',
+    'pendingBooks',
+  ]),
   methods: {
     handleTab(e) {
       const tab = e.target.text
@@ -193,7 +198,7 @@ export default {
 .tab-content
   padding-bottom: 60px
 
-.tab-pane
+.profile
   padding: 30px 0
 
 .form-required

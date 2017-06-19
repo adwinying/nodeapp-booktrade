@@ -1,6 +1,8 @@
 <template>
   <div class="row books-wrapper">
-    <div v-if="books.length === 0"><i>No Books Found.</i></div>
+    <div class="col-xs-12" v-if="books.length === 0">
+      <i>No Books Found</i>
+    </div>
     <div class="col-xs-6 col-sm-2" v-for="book in books">
       <div class="book-cover"
         v-bind:style="{
