@@ -7,6 +7,13 @@ export default {
     state.books.list.unshift(book)
   },
 
+  deleteBook(state, bookId) {
+    state.books.list.splice(
+      state.books.list.findIndex(book =>
+        book._id === bookId),
+      1)
+  },
+
   showMsg(state, { message, type }) {
     state.flash.show = true
     state.flash.message = message

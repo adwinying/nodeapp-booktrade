@@ -68,6 +68,33 @@ const addBook = ({ commit }, newBook) => {
     })
 }
 
+const deleteBook = ({ commit }, bookId) => {
+  flashLoading({ commit })
+
+  Vue.http.delete('/api/book/delete', { _id: bookId })
+    .then(({ data }) => {
+      if (data.success) {
+        commit('deleteBook', bookId)
+        commit('toggleOverlay')
+        flashMsg({ commit }, {
+          message: data.message,
+          type: 'success',
+          duration: 3000,
+        })
+      } else {
+        flashMsg({ commit }, {
+          message: data.message,
+          type: 'danger',
+          duration: 0,
+        })
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      flashErr({ commit })
+    })
+}
+
 const checkAuth = ({ commit }) => {
   Vue.http.get('/api/auth/profile')
     .then(({ data }) => {
@@ -187,6 +214,7 @@ export default {
   flashMsg,
   fetchBooks,
   addBook,
+  deleteBook,
   checkAuth,
   signup,
   login,

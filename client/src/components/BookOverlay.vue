@@ -68,7 +68,7 @@ export default {
       this.$store.commit('toggleOverlay')
     },
     handleDelete() {
-      this.$store.dispatch('deleteBook', this.bookOverlay.selected)
+      this.$store.dispatch('deleteBook', this.bookOverlay.selected._id)
     },
   },
 }
