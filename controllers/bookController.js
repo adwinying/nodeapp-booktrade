@@ -61,8 +61,20 @@ const updateBook = (req, res) => {
   })
 }
 
+const deleteBook = (req, res) => {
+  Book.delete(req.body._id, (err) => {
+    if (err) return sendErr(err, res)
+
+    res.json({
+      success: true,
+      message: 'Successfully deleted book.',
+    })
+  })
+}
+
 module.exports = {
   listAllBooks,
   createBook,
   updateBook,
+  deleteBook,
 }

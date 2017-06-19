@@ -252,3 +252,26 @@ Modifies new book entry in the database.
   "message": "Error message goes here"
 }
 ```
+
+#### `DELETE /api/book/delete`
+_**Authentication required**_
+Deletes book entry in the database.
+
+```javascript
+// Expected input
+{
+  "_id": "594161166f1cb8952835ce0d"
+}
+
+// Output (Success)
+{
+  "success": true,
+  "message": "Successfully deleted book."
+}
+
+// Output (Fail)
+{
+  "success": false,
+  "message": "Error message goes here"
+}
+```
