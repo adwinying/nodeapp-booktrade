@@ -32,6 +32,13 @@ export default {
     return undefined
   },
 
+  bookOverlay(state) {
+    return {
+      active: state.books.isOverlayActive,
+      selected: state.books.list[state.books.selectedIndex],
+    }
+  },
+
   flashMessage(state) {
     return { ...state.flash }
   },
@@ -43,4 +50,5 @@ export default {
   profile(state) {
     return state.auth.user
   },
+
 }

@@ -6,6 +6,7 @@ import SignUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
 import Dashboard from '../components/Dashboard';
 import NewBook from '../components/NewBook';
+import AllBooks from '../components/AllBooks';
 
 import guard from './guard';
 
@@ -41,6 +42,12 @@ export default new Router({
       path: '/add',
       name: 'add',
       component: NewBook,
+      beforeEnter: guard.requireUser,
+    },
+    {
+      path: '/all',
+      name: 'all',
+      component: AllBooks,
       beforeEnter: guard.requireUser,
     },
   ],

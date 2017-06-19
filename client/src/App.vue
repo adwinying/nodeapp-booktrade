@@ -2,6 +2,7 @@
   <div id="app">
     <navbar></navbar>
     <flash-message></flash-message>
+    <book-overlay></book-overlay>
     <transition name="fade">
       <router-view></router-view>
     </transition>
@@ -13,6 +14,7 @@
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import FlashMessage from './components/FlashMessage'
+import BookOverlay from './components/BookOverlay'
 
 export default {
   name: 'app',
@@ -20,6 +22,7 @@ export default {
     Navbar,
     appFooter: Footer,
     FlashMessage,
+    BookOverlay,
   },
   created() {
     this.$store.dispatch('checkAuth')
@@ -29,10 +32,16 @@ export default {
 </script>
 
 <style lang="sass">
-.fade-enter-active, .fade-leave-active 
+.fade-enter-active,
+.fade-leave-active,
+.overlay-enter-active,
+.overlay-leave-active
   transition: opacity .4s
 
-.fade-enter, .fade-leave
+.fade-enter,
+.fade-leave,
+.overlay-enter,
+.overlay-leave-to
   opacity: 0
 
 .form-required

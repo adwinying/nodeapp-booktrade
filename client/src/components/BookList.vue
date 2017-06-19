@@ -9,6 +9,8 @@
           backgroundImage: 
             'url(' + (book.imageURL || '/static/missing.jpg') + ')'
         }"
+        v-bind:class="path !== '/' ? 'clickable' : ''"
+        v-on:click="toggleOverlay(book)"
       >
       </div>
     </div>
@@ -21,8 +23,15 @@ export default {
   props: ['books'],
   data() {
     return {
-
+      path: this.$route.path,
     }
+  },
+  methods: {
+    toggleOverlay(book) {
+      if (this.path !== '/') {
+        this.$store.commit('toggleOverlay', book)
+      }
+    },
   },
 }
 </script>
@@ -41,4 +50,8 @@ export default {
   background-repeat: no-repeat
   background-size: cover
   margin: 15px 0
+
+.clickable
+  cursor: hand
+  cursor: pointer
 </style>

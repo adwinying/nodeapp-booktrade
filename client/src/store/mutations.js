@@ -26,4 +26,12 @@ export default {
     state.auth.isSignedIn = false
     state.auth.user = undefined
   },
+
+  toggleOverlay(state, selectedBook) {
+    if (selectedBook) {
+      state.books.selectedIndex = state.books.list.findIndex(book =>
+        book._id === selectedBook._id)
+    }
+    state.books.isOverlayActive = !state.books.isOverlayActive
+  },
 }
