@@ -21,7 +21,7 @@ export default new Vuex.Store({
     books: {
       list: [],
       isOverlayActive: false,
-      selectedIndex: undefined,
+      selectedIndex: 0,
     },
   },
   mutations,

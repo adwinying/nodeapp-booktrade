@@ -1,4 +1,8 @@
 export default {
+  allBooks(state) {
+    return state.books.list
+  },
+
   recentBooks(state) {
     return state.books.list.slice(0, 6)
   },

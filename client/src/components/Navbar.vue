@@ -13,7 +13,9 @@
 
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#">All Books</a></li>
+          <li v-if="isSignedIn">
+            <router-link to="/all">All Books</router-link>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li v-if="isSignedIn">
