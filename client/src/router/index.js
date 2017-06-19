@@ -5,6 +5,7 @@ import Home from '../components/Home';
 import SignUp from '../components/SignUp';
 import SignIn from '../components/SignIn';
 import Dashboard from '../components/Dashboard';
+import NewBook from '../components/NewBook';
 
 import guard from './guard';
 
@@ -34,6 +35,12 @@ export default new Router({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
+      beforeEnter: guard.requireUser,
+    },
+    {
+      path: '/add',
+      name: 'add',
+      component: NewBook,
       beforeEnter: guard.requireUser,
     },
   ],

@@ -1,60 +1,40 @@
 <template>
   <div class="container">
     <h1>Dashboard</h1>
+    <router-link to="/add" class="btn btn-sm btn-primary pull-right">
+      <i class="fa fa-plus"></i>
+      Add Book
+    </router-link>
     <br>
     <ul class="nav nav-tabs">
       <li v-bind:class="activeTab === 'myBooks' ? 'active' : ''">
-        <a
-          class="nav-tab"
-          href="#"
-          v-on:click.prevent="handleTab"
-        >My Books</a>
+        <a class="nav-tab" href="#" v-on:click.prevent="handleTab">My Books</a>
       </li>
       <li v-bind:class="activeTab === 'myReq' ? 'active' : ''">
-        <a
-          class="nav-tab"
-          href="#"
-          v-on:click.prevent="handleTab"
-        >Requested Books</a>
+        <a class="nav-tab" href="#" v-on:click.prevent="handleTab">Requested Books</a>
       </li>
       <li v-bind:class="activeTab === 'pendingReq' ? 'active' : ''">
-        <a
-          class="nav-tab"
-          href="#"
-          v-on:click.prevent="handleTab"
-        >Pending Requests</a>
+        <a class="nav-tab" href="#" v-on:click.prevent="handleTab">Pending Requests</a>
       </li>
       <li v-bind:class="activeTab === 'profile' ? 'active' : ''">
-        <a
-          class="nav-tab"
-          href="#"
-          v-on:click.prevent="handleTab"
-        >Update Profile</a>
+        <a class="nav-tab" href="#" v-on:click.prevent="handleTab">Update Profile</a>
       </li>
     </ul>
     <div class="tab-content">
-      <div
-        class="tab-pane fade in"
-        v-bind:class="activeTab === 'myBooks' ? 'active' : ''"
-      >
+      <div class="tab-pane fade in"
+        v-bind:class="activeTab === 'myBooks' ? 'active' : ''">
         <book-list v-bind:books="userBooks"></book-list>
       </div>
-      <div
-        class="tab-pane fade in"
-        v-bind:class="activeTab === 'myReq' ? 'active' : ''"
-      >
+      <div class="tab-pane fade in"
+        v-bind:class="activeTab === 'myReq' ? 'active' : ''">
         <book-list v-bind:books="requestedBooks"></book-list>
       </div>
-      <div
-        class="tab-pane fade in"
-        v-bind:class="activeTab === 'pendingReq' ? 'active' : ''"
-      >
+      <div class="tab-pane fade in"
+        v-bind:class="activeTab === 'pendingReq' ? 'active' : ''">
         <book-list v-bind:books="pendingBooks"></book-list>
       </div>
-      <div
-        class="tab-pane fade in profile"
-        v-bind:class="activeTab === 'profile' ? 'active' : ''"
-      >
+      <div class="tab-pane fade in profile"
+        v-bind:class="activeTab === 'profile' ? 'active' : ''">
         <p><i><span class="form-required">*</span> Required fields</i></p>
         <div class="row" v-if="profile">
           <div class="col-sm-5">
@@ -95,13 +75,13 @@
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Update profile</button>
-              </div>
+              </div><!-- /.form-group -->
             </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+          </div><!-- /.col-sm-5 -->
+        </div><!-- /.row -->
+      </div><!-- /.profile -->
+    </div><!-- /.tab-content -->
+  </div><!-- /.container -->
 </template>
 
 <script>
@@ -195,12 +175,15 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+h1
+  display: inline-block
+
+.btn
+  margin: 20px 0 0
+
 .tab-content
   padding-bottom: 60px
 
 .profile
   padding: 30px 0
-
-.form-required
-  color: red
 </style>

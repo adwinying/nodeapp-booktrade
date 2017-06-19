@@ -35,4 +35,6 @@ export default {
 .fade-enter, .fade-leave
   opacity: 0
 
+.form-required
+  color: red
 </style>

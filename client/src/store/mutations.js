@@ -3,6 +3,10 @@ export default {
     state.books.list = books
   },
 
+  addBook(state, book) {
+    state.books.list.unshift(book)
+  },
+
   showMsg(state, { message, type }) {
     state.flash.show = true
     state.flash.message = message

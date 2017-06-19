@@ -26,6 +26,37 @@ export default {
       })
   },
 
+  addBook: ({ commit }, newBook) => {
+    this.a.flashMsg({ commit }, {
+      message: 'Loading...',
+      type: 'info',
+      duration: 0,
+    })
+
+    Vue.http.post('/api/book/new', newBook)
+      .then(({ data }) => {
+        if (data.success) {
+          commit('addBook', data.book)
+          this.a.flashMsg({ commit }, {
+            message: 'Successfully added book.',
+            type: 'success',
+            duration: 3000,
+          })
+          router.push('/dashboard')
+        } else {
+          this.a.flashMsg({ commit }, {
+            message: data.message,
+            type: 'danger',
+            duration: 0,
+          })
+        }
+      })
+      .catch((err) => {
+        console.error(err)
+        this.a.flashErr({ commit })
+      })
+  },
+
   checkAuth({ commit }) {
     Vue.http.get('/api/auth/profile')
       .then(({ data }) => {
