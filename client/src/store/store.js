@@ -18,7 +18,11 @@ export default new Vuex.Store({
       message: 'Loading...',
       type: 'success',
     },
-    books: [],
+    books: {
+      list: [],
+      isOverlayActive: false,
+      selectedIndex: undefined,
+    },
   },
   mutations,
   actions,

@@ -1,6 +1,15 @@
 export default {
   recentBooks(state) {
-    return state.books.slice(0, 6)
+    return state.books.list.slice(0, 6)
+  },
+
+  userBooks(state) {
+    if (state.auth.user) {
+      return state.books.list.filter(book =>
+        book.owner === state.auth.user._id)
+    }
+
+    return undefined
   },
 
   flashMessage(state) {

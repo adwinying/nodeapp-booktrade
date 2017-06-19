@@ -39,19 +39,9 @@
       </div>
     </div>
 
-    <div class="recentbooks">
+    <div class="recent-books">
       <h2 class="text-center">Recently Added Books</h2>
-      <div class="row recent-books-wrapper">
-        <div class="col-xs-6 col-sm-2" v-for="book in recentBooks">
-          <div class="book-cover"
-            v-bind:style="{
-              backgroundImage: 
-                'url(' + (book.imageURL || '/static/missing.jpg') + ')'
-            }"
-          >
-          </div>
-        </div>
-      </div>
+      <book-list v-bind:books="recentBooks"></book-list>
     </div>
   </div>
 </template>
@@ -59,8 +49,13 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import BookList from './BookList'
+
 export default {
   name: 'home',
+  components: {
+    BookList,
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -82,8 +77,4 @@ export default {
 <style lang="sass" scoped>
 .features
   padding: 40px 0
-
-.recent-books-wrapper
-  margin-top: 30px
-  margin-bottom: 30px
 </style>

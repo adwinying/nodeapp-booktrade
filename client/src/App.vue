@@ -28,16 +28,6 @@ export default {
 </script>
 
 <style lang="sass">
-.book-cover
-  width: 100%
-  height: 0
-  padding-bottom: 150%
-  border: 1px solid #777
-  background-position: center
-  background-repeat: no-repeat
-  background-size: cover
-  margin: 15px 0
-
 .fade-enter-active, .fade-leave-active 
   transition: opacity .4s
 

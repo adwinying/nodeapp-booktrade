@@ -1,6 +1,6 @@
 export default {
   fetchBooks(state, books) {
-    state.books = books
+    state.books.list = books
   },
 
   showMsg(state, { message, type }) {

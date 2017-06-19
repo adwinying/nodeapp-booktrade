@@ -37,7 +37,7 @@
         class="tab-pane fade in"
         v-bind:class="activeTab === 'myBooks' ? 'active' : ''"
       >
-        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+        <book-list v-bind:books="userBooks"></book-list>
       </div>
       <div
         class="tab-pane fade in"
@@ -108,8 +108,13 @@
 import { mapGetters } from 'vuex'
 import guard from '../router/guard'
 
+import BookList from './BookList'
+
 export default {
   name: 'Dashboard',
+  components: {
+    BookList,
+  },
   data() {
     return {
       activeTab: 'myBooks',
@@ -124,7 +129,7 @@ export default {
     },
   },
   beforeRouteEnter: guard.requireUser,
-  computed: mapGetters(['profile']),
+  computed: mapGetters(['profile', 'userBooks']),
   methods: {
     handleTab(e) {
       const tab = e.target.text
