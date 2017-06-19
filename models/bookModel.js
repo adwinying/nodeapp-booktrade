@@ -10,8 +10,12 @@ const bookModel = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     required: true,
+    ref: 'User',
   },
-  lender: Schema.Types.ObjectId,
+  lender: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
   imageURL: String,
   confirmed: {
     type: Boolean,
@@ -45,7 +49,7 @@ Book.delete = (bookId, callback) => {
 }
 
 Book.fetchAll = (callback) => {
-  Book.find({}).sort('-updated').exec(callback)
+  Book.find({}).populate('owner').sort('-updated').exec(callback)
 }
 
 module.exports = Book

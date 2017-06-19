@@ -18,7 +18,7 @@
                 <div class="col-sm-8">
                   <h2>{{bookOverlay.selected.title}}</h2>
                   <h4><small><i>
-                    Owned by {{bookOverlay.selected.owner}}
+                    Owned by {{bookOverlay.selected.owner.username}}
                   </i></small></h4>
                   <p>
                     <strong>Status:</strong>
@@ -28,18 +28,18 @@
                   </p>
                   <br>
                   <button class="btn btn-danger"
-                    v-if="bookOverlay.selected.owner === profile._id"
+                    v-if="bookOverlay.selected.owner._id === profile._id"
                     v-on:click="handleDelete">
                     Delete
                   </button>
                   <button class="btn btn-primary"
-                    v-if="bookOverlay.selected.owner === profile._id &&
+                    v-if="bookOverlay.selected.owner._id === profile._id &&
                     bookOverlay.selected.lender &&
                     !bookOverlay.selected.confirmed">
                     Approve Request
                   </button>
                   <button class="btn btn-primary"
-                    v-if="bookOverlay.selected.owner !== profile._id &&
+                    v-if="bookOverlay.selected.owner._id !== profile._id &&
                     !bookOverlay.selected.lender">
                     Borrow
                   </button>

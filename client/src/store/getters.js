@@ -10,7 +10,7 @@ export default {
   userBooks(state) {
     if (state.auth.user) {
       return state.books.list.filter(book =>
-        book.owner === state.auth.user._id)
+        book.owner._id === state.auth.user._id)
     }
 
     return undefined
@@ -28,7 +28,7 @@ export default {
   pendingBooks(state) {
     if (state.auth.user) {
       return state.books.list.filter(book =>
-        book.owner === state.auth.user._id &&
+        book.owner._id === state.auth.user._id &&
         book.lender &&
         book.confirmed === false)
     }
