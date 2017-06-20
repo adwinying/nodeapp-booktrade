@@ -31,10 +31,8 @@ app.use('/api/book', bookRoutes)
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get('/', (req, res) => {
-  res.json({
-    api: 'online',
-  })
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'))
 })
 
 app.listen(port, () => {

@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1>Dashboard</h1>
+    <br>
     <router-link to="/add" class="btn btn-sm btn-primary pull-right">
       <i class="fa fa-plus"></i>
       Add Book
