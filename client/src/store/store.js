@@ -22,6 +22,7 @@ export default new Vuex.Store({
       list: [],
       isOverlayActive: false,
       selectedIndex: 0,
+      searched: [],
     },
   },
   mutations,

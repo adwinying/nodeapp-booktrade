@@ -24,6 +24,12 @@ export default {
     })
   },
 
+  search(state, query) {
+    const pattern = new RegExp(query.toLowerCase())
+    state.books.searched = state.books.list.filter(book =>
+      pattern.test(book.title.toLowerCase()))
+  },
+
   showMsg(state, { message, type }) {
     state.flash.show = true
     state.flash.message = message

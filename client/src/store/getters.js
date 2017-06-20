@@ -36,6 +36,10 @@ export default {
     return undefined
   },
 
+  searchResults(state) {
+    return state.books.searched
+  },
+
   bookOverlay(state) {
     return {
       active: state.books.isOverlayActive,
