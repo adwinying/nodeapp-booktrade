@@ -28,7 +28,7 @@ const createBook = (req, res) => {
         if (err) return sendErr(err, res)
 
         book.populate({
-          path: 'owner',
+          path: 'owner borrower',
           select: '-password',
         }, (popErr, pop) => {
           if (popErr) return sendErr(popErr, res)
@@ -53,7 +53,7 @@ const updateBook = (req, res) => {
     _id: req.body._id,
     title: req.body.title,
     owner: req.body.owner,
-    lender: req.body.lender,
+    borrower: req.body.borrower,
     imageURL: req.body.imageURL,
     confirmed: req.body.confirmed,
   }
@@ -63,7 +63,7 @@ const updateBook = (req, res) => {
 
     if (book) {
       book.populate({
-        path: 'owner',
+        path: 'owner borrower',
         select: '-password',
       }, (popErr, pop) => {
         if (popErr) return sendErr(popErr, res)

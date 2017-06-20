@@ -14,6 +14,16 @@ export default {
       1)
   },
 
+  updateBook(state, targetBook) {
+    state.books.list = state.books.list.map((book) => {
+      if (book._id === targetBook._id) {
+        return targetBook
+      }
+
+      return book
+    })
+  },
+
   showMsg(state, { message, type }) {
     state.flash.show = true
     state.flash.message = message

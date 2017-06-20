@@ -30,8 +30,8 @@
       </div>
       <div class="col-sm-4">
         <h3>
-          <i class="fa fa-user-secret" aria-hidden="true"></i> 
-          Spead Knowledge
+          <i class="fa fa-book" aria-hidden="true"></i> 
+          Spread Knowledge
         </h3>
         <p>
           Typewriter wolf vice snackwave helvetica chartreuse, try-hard ugh air plant. Gastropub subway tile literally, vape venmo farm-to-table taxidermy YOLO lumbersexual health goth master cleanse hell of meh retro. Hoodie farm-to-table sustainable, knausgaard cardigan yuccie jean shorts. 

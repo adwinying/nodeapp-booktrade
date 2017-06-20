@@ -12,7 +12,7 @@ const bookModel = new Schema({
     required: true,
     ref: 'User',
   },
-  lender: {
+  borrower: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
@@ -23,8 +23,7 @@ const bookModel = new Schema({
   },
 }, {
   timestamps: {
-    createdAt: 'updated',
-    updatedAt: 'updated',
+    createdAt: 'created',
   },
 })
 
@@ -49,7 +48,11 @@ Book.delete = (bookId, callback) => {
 }
 
 Book.fetchAll = (callback) => {
-  Book.find({}).populate({ path: 'owner', select: '-password' }).sort('-updated').exec(callback)
+  Book.find({})
+    .populate({ path: 'owner', select: '-password' })
+    .populate({ path: 'borrower', select: '-password' })
+    .sort('-created')
+    .exec(callback)
 }
 
 module.exports = Book

@@ -171,8 +171,22 @@ Returns all books in the database.
       "_id": "594161166f1cb8952835ce0d",
       "updated": "2017-06-14T16:15:18.539Z",
       "title": "Steve Jobs",
-      "owner": "593fe659748a28813aa8bac0",
-      "lender": "59312412465a28813asd1224",
+      "owner": {
+        "_id": "593fe5538d8fb9811c5bfd8e",
+        "username": "admin",
+        "city": "Boston",
+        "state": "MA",
+        "__v": 0,
+        "name": "Admin"
+      },
+      "borrower": {
+        "_id": "593fe659748a28813aa8bac0",
+        "username": "adwin",
+        "city": "Seattle",
+        "state": "WA",
+        "__v": 0,
+        "name": "Adwin"
+      },
       "imageURL": "http://books.google.com/books/content?id=eSMdAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "__v": 0,
       "confirmed": false
@@ -205,7 +219,14 @@ Creates new book entry in the database.
     "_id": "594161166f1cb8952835ce0d",
     "updated": "2017-06-14T16:15:18.539Z",
     "title": "My Book Title",
-    "owner": "593fe659748a28813aa8bac0",
+    "owner": {
+      "_id": "593fe5538d8fb9811c5bfd8e",
+      "username": "admin",
+      "city": "Boston",
+      "state": "MA",
+      "__v": 0,
+      "name": "Admin"
+    },
     "imageURL": "http://books.google.com/books/content?id=eSMdAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "__v": 0,
     "confirmed": false
@@ -239,7 +260,14 @@ Modifies new book entry in the database.
     "_id": "594161166f1cb8952835ce0d",
     "updated": "2017-06-15T16:15:18.539Z",
     "title": "My Book Title",
-    "owner": "593fe659748a28813aa8bac0",
+    "owner": {
+      "_id": "593fe659748a28813aa8bac0",
+      "username": "adwin",
+      "city": "Seattle",
+      "state": "WA",
+      "__v": 0,
+      "name": "Adwin"
+    },
     "imageURL": "http://books.google.com/books/content?id=eSMdAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "__v": 0,
     "confirmed": true

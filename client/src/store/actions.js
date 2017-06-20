@@ -95,6 +95,36 @@ const deleteBook = ({ commit }, bookId) => {
     })
 }
 
+const updateBook = ({ commit }, book) => {
+  flashLoading({ commit })
+
+  Vue.http.put('/api/book/update', {
+    ...book,
+    owner: book.owner._id,
+    borrower: book.borrower ? book.borrower._id : undefined,
+  })
+    .then(({ data }) => {
+      if (data.success) {
+        commit('updateBook', data.book)
+        flashMsg({ commit }, {
+          message: 'Successfully updated.',
+          type: 'success',
+          duration: 3000,
+        })
+      } else {
+        flashMsg({ commit }, {
+          message: data.message,
+          type: 'danger',
+          duration: 0,
+        })
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      flashErr({ commit })
+    })
+}
+
 const checkAuth = ({ commit }) => {
   Vue.http.get('/api/auth/profile')
     .then(({ data }) => {
@@ -215,6 +245,7 @@ export default {
   fetchBooks,
   addBook,
   deleteBook,
+  updateBook,
   checkAuth,
   signup,
   login,

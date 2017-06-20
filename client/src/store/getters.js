@@ -19,7 +19,7 @@ export default {
   requestedBooks(state) {
     if (state.auth.user) {
       return state.books.list.filter(book =>
-        book.lender === state.auth.user._id)
+        book.borrower && (book.borrower._id === state.auth.user._id))
     }
 
     return undefined
@@ -29,7 +29,7 @@ export default {
     if (state.auth.user) {
       return state.books.list.filter(book =>
         book.owner._id === state.auth.user._id &&
-        book.lender &&
+        book.borrower &&
         book.confirmed === false)
     }
 

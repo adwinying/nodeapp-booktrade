@@ -22,30 +22,34 @@
                   </i></small></h4>
                   <p>
                     <strong>Status:</strong>
-                    <span v-if="!bookOverlay.selected.lender">Available</span>
-                    <span v-if="bookOverlay.selected.lender && !bookOverlay.selected.confirmed">Borrow request accepted; waiting for owner approval</span>
-                    <span v-if="bookOverlay.selected.lender && !bookOverlay.selected.confirmed">Borrow request accepted; owner approved.</span>
+                    <span v-if="!bookOverlay.selected.borrower">Available</span>
+                    <span v-if="bookOverlay.selected.borrower && !bookOverlay.selected.confirmed">Borrow request made by <strong>{{bookOverlay.selected.borrower.username}}</strong>; awaiting for <strong>{{bookOverlay.selected.owner.username}}'s</strong> approval.</span>
+                    <span v-if="bookOverlay.selected.borrower && bookOverlay.selected.confirmed">Borrow request approved by <strong>{{bookOverlay.selected.owner.username}}</strong>.</span>
                   </p>
                   <br>
-                  <button class="btn btn-danger"
-                    v-if="bookOverlay.selected.owner._id === profile._id"
-                    v-on:click="handleDelete">
-                    Delete
-                  </button>
                   <button class="btn btn-primary"
                     v-if="bookOverlay.selected.owner._id === profile._id &&
-                    bookOverlay.selected.lender &&
-                    !bookOverlay.selected.confirmed">
+                    bookOverlay.selected.borrower &&
+                    !bookOverlay.selected.confirmed"
+                    v-on:click="handleLend">
                     Approve Request
                   </button>
                   <button class="btn btn-primary"
                     v-if="bookOverlay.selected.owner._id !== profile._id &&
-                    !bookOverlay.selected.lender">
+                    !bookOverlay.selected.borrower"
+                    v-on:click="handleBorrow">
                     Borrow
                   </button>
                   <button class="btn btn-primary"
-                    v-if="bookOverlay.selected.lender === profile._id">
+                    v-if="bookOverlay.selected.borrower &&
+                      bookOverlay.selected.borrower._id === profile._id"
+                      v-on:click="handleUnborrow">
                     Un-borrow
+                  </button>
+                  <button class="btn btn-danger"
+                    v-if="bookOverlay.selected.owner._id === profile._id"
+                    v-on:click="handleDelete">
+                    Delete
                   </button>
                 </div>
               </div>
@@ -69,6 +73,24 @@ export default {
     },
     handleDelete() {
       this.$store.dispatch('deleteBook', this.bookOverlay.selected._id)
+    },
+    handleLend() {
+      this.$store.dispatch('updateBook', {
+        ...this.bookOverlay.selected,
+        confirmed: true,
+      })
+    },
+    handleBorrow() {
+      this.$store.dispatch('updateBook', {
+        ...this.bookOverlay.selected,
+        borrower: this.profile,
+      })
+    },
+    handleUnborrow() {
+      this.$store.dispatch('updateBook', {
+        ...this.bookOverlay.selected,
+        borrower: undefined,
+      })
     },
   },
 }
