@@ -7,6 +7,7 @@ import SignIn from '../components/SignIn';
 import Dashboard from '../components/Dashboard';
 import NewBook from '../components/NewBook';
 import AllBooks from '../components/AllBooks';
+import NotFound from '../components/NotFound';
 
 import guard from './guard';
 
@@ -49,6 +50,11 @@ export default new Router({
       name: 'all',
       component: AllBooks,
       beforeEnter: guard.requireUser,
+    },
+    {
+      path: '*',
+      name: 'notfound',
+      component: NotFound,
     },
   ],
 });

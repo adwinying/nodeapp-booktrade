@@ -24,7 +24,7 @@
                     <strong>Status:</strong>
                     <span v-if="!bookOverlay.selected.borrower">Available</span>
                     <span v-if="bookOverlay.selected.borrower && !bookOverlay.selected.confirmed">Borrow request made by <strong>{{bookOverlay.selected.borrower.username}}</strong>; awaiting for <strong>{{bookOverlay.selected.owner.username}}'s</strong> approval.</span>
-                    <span v-if="bookOverlay.selected.borrower && bookOverlay.selected.confirmed">Borrow request approved by <strong>{{bookOverlay.selected.owner.username}}</strong>.</span>
+                    <span v-if="bookOverlay.selected.borrower && bookOverlay.selected.confirmed">Borrow request from <strong>{{bookOverlay.selected.borrower.username}}</strong> approved by <strong>{{bookOverlay.selected.owner.username}}</strong>.</span>
                   </p>
                   <br>
                   <button class="btn btn-primary"
