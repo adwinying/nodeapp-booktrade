@@ -3,7 +3,7 @@
     <navbar></navbar>
     <flash-message></flash-message>
     <book-overlay></book-overlay>
-    <transition name="fade">
+    <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
     <app-footer></app-footer>
@@ -33,13 +33,15 @@ export default {
 
 <style lang="sass">
 .fade-enter-active,
-.fade-leave-active,
+.fade-leave-active
+  transition: opacity .2s
+
 .overlay-enter-active,
 .overlay-leave-active
   transition: opacity .4s
 
 .fade-enter,
-.fade-leave,
+.fade-leave-to,
 .overlay-enter,
 .overlay-leave-to
   opacity: 0
