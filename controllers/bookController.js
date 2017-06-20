@@ -22,7 +22,7 @@ const listAllBooks = (req, res) => {
 const createBook = (req, res) => {
   axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${req.body.title}`)
     .then((result) => {
-      const imgURL = result.data && result.data.items ?
+      const imgURL = result.data.items && result.data.items[0].volumeInfo.imageLinks ?
         result.data.items[0].volumeInfo.imageLinks.thumbnail : undefined
       Book.create(req.body.title, req.user._id, imgURL, (err, book) => {
         if (err) return sendErr(err, res)
