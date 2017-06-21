@@ -90,6 +90,7 @@ export default {
       this.$store.dispatch('updateBook', {
         ...this.bookOverlay.selected,
         borrower: undefined,
+        confirmed: false,
       })
     },
   },
